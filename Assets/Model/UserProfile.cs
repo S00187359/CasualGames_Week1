@@ -1,18 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UserProfile : MonoBehaviour
+public class UserProfile 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string UserName;
+    public DateTime CreatedOn;
+    public Color _Color;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
