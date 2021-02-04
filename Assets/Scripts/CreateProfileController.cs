@@ -10,6 +10,50 @@ public class CreateProfileController : MonoBehaviour
     public InputField txtUsername;
     Color defaultColor = Color.red;
 
+    public ProfilePicList AvailableProfilePictures;
+    ProfilePictureData pictureData;
+
+    public GameObject lstPicturesContent;
+    List<UserProfile> availableProfiles = new List<UserProfile>();
+
+    private void Start()
+    {
+        availableProfiles = GameUtilities.LoadUserProfiles();
+
+        foreach (UserProfile profile in availableProfiles)
+        {
+            AddProfileToList(profile);
+        }
+
+        FillListWithProfilePictures();
+    }
+    void FillListWithProfilePictures()
+    {
+        foreach (ProfilePictureData pic in AvailableProfilePictures.Pictures)
+        {
+         
+            GameObject button = Instantiate(
+                AvailableProfilePictures.ProfileButtonPrefab,
+                lstPicturesContent.transform);
+
+            button.GetComponent<ProfilepicButtonControl>().UpdateButton(pic);
+
+            Button testBtn = button.GetComponent<Button>();
+            testBtn.onClick.AddListener(() => SetProfilePicture(testBtn));
+
+        }
+    }
+    public void SetProfilePicture(Button clickedButton) 
+    {
+        if (clickedButton != null)
+        {
+            string id = clickedButton.GetComponent<ProfilepicButtonControl>().ID;
+
+           pictureData = AvailableProfilePictures.GetData(id);
+
+           
+        }
+    }
     public void SetProfileColor(Button clickedButton)
     {
         if (clickedButton != null)
@@ -30,10 +74,14 @@ public class CreateProfileController : MonoBehaviour
             {
                 UserName = username,
                 CreatedOn = DateTime.UtcNow,
-                _Color = defaultColor
+                _Color = defaultColor,
+                ProfileSprite = pictureData.ProfileSprite,
+                ProfileSpriteName = pictureData.ID
             };
 
             AddProfileToList(profile);
+
+            GameUtilities.SaveUserProfile(profile);
 
           
         }

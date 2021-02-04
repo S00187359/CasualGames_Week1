@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa4b9ffd94d9b74ab212bf3646a89bf, type: 3}
+  m_Name: ProfilePictureList
+  m_EditorClassIdentifier: 
+  ProfileButtonPrefab: {fileID: 7064569396857995035, guid: 6c4682f5530a94940bff55cb77c6ff75,
+    type: 3}
+  Pictures:
+  - ID: Monkey
+    ProfileSprite: {fileID: 21300000, guid: 46358b485f9dcb44080a95e874505f33, type: 3}
+  - ID: Doggo
+    ProfileSprite: {fileID: 21300000, guid: cf693ba9e9199714a89cc8f8f67755f9, type: 3}
+  - ID: BlackClown
+    ProfileSprite: {fileID: 21300000, guid: 02d32d26d7ab8f0409daf5e2ad059d2f, type: 3}
+  - ID: Clown
+    ProfileSprite: {fileID: 21300000, guid: 423ced6f286b7664e99e3eb649bb1cbb, type: 3}
+  - ID: Default
+    ProfileSprite: {fileID: 21300000, guid: a513dc20b6852294589df4f2fcd6ad59, type: 3}
