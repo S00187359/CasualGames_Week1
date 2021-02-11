@@ -13,7 +13,7 @@ public class GameUtilities
         {
             Directory.CreateDirectory("Profiles");
         }
-        File.WriteAllText("Profiles/" + profile.UserName + ".json" , json);
+        SaveObject("Profiles/" + profile.UserName + ".json", profile);
     }
 
     public static List<UserProfile> LoadUserProfiles()
@@ -24,12 +24,44 @@ public class GameUtilities
 
         foreach (string path in profiles)
         {
-            string json = File.ReadAllText(path);
-            UserProfile Up = JsonUtility.FromJson<UserProfile>(json);
+           
+            UserProfile Up = LoadObject<UserProfile>(path);
 
             LoadedProfiles.Add(Up);
         }
 
         return LoadedProfiles;
+    }
+
+    public static void SaveObject(string path, object objectToSave)
+    {
+        if (objectToSave != null)
+        {
+            string json = JsonUtility.ToJson(objectToSave);
+            File.WriteAllText(path, json);
+        }
+    }
+
+    public static T LoadObject<T>(string path)
+    {
+        if (File.Exists(path))
+        {
+            return JsonUtility.FromJson<T>(path);
+        }
+        else
+        {
+            return default(T);
+        }
+       
+    }
+
+    public static void SaveInvetory(SavableInvetory invetory)
+    {
+        SaveObject("Invetories/" + invetory.OwnerID + ".inv", invetory);
+    }
+
+    public static SavableInvetory LoadInvetory(string ownerID)
+    {
+        return LoadObject<SavableInvetory>("Invetories/" + ownerID + ".inv");
     }
 }
