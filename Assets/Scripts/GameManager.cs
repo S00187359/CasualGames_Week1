@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public ItemList AllItems;
 
     public static GameManager Instance;
-    void Start()
+    void Awake()
     {
         if (GameManager.Instance == null)
         {
@@ -19,5 +19,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public InvetoryDisplay vendorUIPrefab;
+    public Transform rootCanvas;
+    public void ShowvendorUI(VendorInvetory vendorInvetory)
+    {
+        InvetoryDisplay dis = Instantiate(vendorUIPrefab, rootCanvas);
+        dis.UpdateDisplay(vendorInvetory);
     }
 }

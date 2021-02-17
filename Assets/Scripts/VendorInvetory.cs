@@ -7,7 +7,7 @@ public class VendorInvetory : MonoBehaviour
     public VendorItems VendorItems;
     void Start()
     {
-        
+        GameManager.Instance.ShowvendorUI(this);
     }
  
 }
